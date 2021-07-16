@@ -1,6 +1,5 @@
 <?php
 include("helpers.php");
-
 class Connection
 {
 
@@ -23,12 +22,57 @@ class Connection
     {
         $connection->close();
     }
-
 }
 
 
 class Action extends Connection
 {
+    private function fileUpload($file)
+    {
+        $message = [];
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($file["file"]["name"]);
+        $imageFileType = strtolower(explode("/", $file["file"]["type"])[1]);
+
+        $imageSize = $file["file"]["size"];
+        if ($imageSize <= 2000000) {
+            if ($imageFileType === "jpeg" || $imageFileType === "jpg" || $imageFileType === "png") {
+                if (move_uploaded_file($file["file"]["tmp_name"], $target_file)) {
+                    $message["message"] = "file successfully upload.";
+                    $message["code"] = 200;
+                    $message["file_path"] = $target_file;
+                } else {
+                    $message["message"] = "There is issue with to upload. try again.";
+                    $message["code"] = 500;
+                }
+            }
+        } else {
+            $message["message"] = "Sorry, your file is too large.";
+            $message["code"] = 500;
+        }
+        return $message;
+    }
+
+    public function fileUploadHistory(array $params, array $file)
+    {
+        $message = [];
+        $response = $this->fileUpload($file);
+
+        if (!empty($response) && $response["code"] === 200) {
+
+            $sql = "INSERT INTO file_upload_log 
+                (`name`,`file_path`)
+                VALUES(
+                '{$params["name"]}',
+                '{$response["file_path"]}')";
+            $message["message"] = $sql;
+            $message["code"] = 200;
+            return $message;
+            //todo: add insert query to insert records;
+        } else {
+            return $response;
+        }
+    }
     public function insertRecords(array $params)
     {
         $response = [];
@@ -57,7 +101,6 @@ class Action extends Connection
         }
         $this->closeConnection($conn);
         return $response;
-
     }
 
     public function showRecords()
@@ -260,29 +303,8 @@ class Action extends Connection
             return $result;
         }
         return [];
-
     }
-    public function deleteProducts($id)
-     {
-         $response = [];
-         $conn = $this->connect();
-         if ($conn->connect_error) {
-             $response["message"] = $conn->connect_error;
-             $response["code"] = 500;
-             return $response;
-         }
-         $sql = "DELETE FROM products WHERE id=" . $id;
-         $result = $conn->query($sql);
-         if ($result === True) {
-            header('location: home.php');
-
-        } else {
-            
-        }
-         return $result;
-
-     }
-
+    
      public function showProductsById($id)
     {
 
@@ -336,7 +358,25 @@ class Action extends Connection
         }
 
     }
+    public function deleteProducts($id)
+     {
+         $response = [];
+         $conn = $this->connect();
+         if ($conn->connect_error) {
+             $response["message"] = $conn->connect_error;
+             $response["code"] = 500;
+             return $response;
+         }
+         $sql = "DELETE FROM products WHERE id=" . $id;
+         $result = $conn->query($sql);
+         if ($result === True) {
+            header('location: home.php');
+
+        } else {
+            
+        }
+         return $result;
+
+     }
 
 }
-
-?>
