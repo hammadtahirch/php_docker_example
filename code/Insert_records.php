@@ -49,20 +49,26 @@ if(isset($_POST["submit"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PHP</title>
+    <title>User Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--Jquery CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+<!--CSS-->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
     <h2>User Registeration Form</h2>
     <span class="error" style="color: red ; text-align: center"><?php echo $msg?></span>
-    <form action="" method="post">
+    <form action="" method="post" id="basic-form">
         <div class="form-group">
             <label for="first_name">First Name:</label>
             <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" name="first_name">
@@ -102,3 +108,5 @@ if(isset($_POST["submit"])){
 
 </body>
 </html>
+<!-- <script src="form-validation.js"></script> -->
+
