@@ -40,12 +40,22 @@ $response = $user->showProduct();
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="navbar-brand" href="#">Welcome,<?php echo $data['first_name']," ",$data['last_name']?></a>
+            </li>
+        </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link " href="product.php">Add Product</a>
             </li>
         </ul>
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="user.php">Show Shiping Address</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link " href="?logout=logout">Logout</a>
             </li>
@@ -54,9 +64,6 @@ $response = $user->showProduct();
 
 </nav>
 </br>
-<div class="text-center" style="margin-bottom:0">
-    <h3>Welcome : <?php echo $data['first_name'],$data['last_name']?></h3>
-</div>
 <div class="container" style="margin-top:30px">
 </div>
 <div class="container">

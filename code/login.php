@@ -48,9 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+</br>
+</br>
 <div class="container mt-10px">
-    <h2>Login Form</h2>
+    <h2>Please Login</h2>
+</br>
     <span class="error" style="color: red"><?php echo $msg2?></span>
     <form action=""  method="post">
         <div class="form-group">
@@ -70,8 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             </label>
 
         </div>
+</br>
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-        <p>Login Form yet?<a href="Insert_records.php"> Register Here</a></p>
+</br>
+        <p>You don't have Account please <a href="Insert_records.php"> Register Here</a></p>
     </form>
 </div>
 

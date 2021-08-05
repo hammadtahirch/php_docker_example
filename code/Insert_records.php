@@ -64,7 +64,8 @@ if(isset($_POST["submit"])){
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+</br>
+</br>
 <div class="container">
     <h2>User Registeration Form</h2>
     <span class="error" style="color: red ; text-align: center"><?php echo $msg?></span>
@@ -102,7 +103,7 @@ if(isset($_POST["submit"])){
 
         </div>
         <button type="submit"  name="submit" class="btn btn-primary">Submit</button>
-        <p>Login Form yet?<a href="login.php"> Login</a></p>
+        <p>If you have account please <a href="login.php"> Login</a></p>
     </form>
 </div>
 
