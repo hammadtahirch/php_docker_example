@@ -1,1 +1,1 @@
-# php_docker_example
+# How to work docker conatiner works with core php
